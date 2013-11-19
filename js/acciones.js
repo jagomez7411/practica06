@@ -14,8 +14,19 @@ navigator.notification.alert("Tabla Creada");
 
    }, error); 
    });//ejecutar 
-   });//click crear			
+   });//click crear		
+   
+$('#Eliminar').bind("Click",function(event){
+	if(!navigator.notification.confirm("Borrar Tabla ",""))
+	return;
+	db.transaction(function(ejecutar) {
+	var SQL="DROP TABLE Clientes";
+	ejecutar.executeSQL(SQL,undefined, function() {				
+    navigator.notification.alert("Tabla Borrada");
 
+   }, error); 
+   });//ejecutar 
+   });//click eliminar 
 
 },false);//ready device
 	
