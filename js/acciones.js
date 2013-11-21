@@ -22,7 +22,7 @@ alert("Tabla Creada");
    
 $('#Eliminar').bind("click",function(event){
 
-	if(!confirm("Borrar Tabla ",""))return;
+	if(!confirm("Borrar Tabla?? ",""))return;
 	db.transaction(function(ejecutar) {
 	var SQL="DROP TABLE Clientes";
 	ejecutar.executeSql(SQL,undefined, function() {				
@@ -31,6 +31,21 @@ $('#Eliminar').bind("click",function(event){
    }, error); 
    });//ejecutar 
    });//click eliminar 
+
+$("#Insertar").bind ("click", function (event)
+{
+  var v_nombre = $("#nombre").val ();
+  var v_apellido = $("#apellido").val ();
+  
+  db.transaction (function (ejecutar) 
+  {
+    var sql = "INSERT INTO clientes (nombre, apellido) VALUES (?, ?)";
+    ejecutar.executeSql (sql, [v_nombre, v_apellido], function ()
+    { 
+      alert ("Cliente Agregado");
+    }, error);
+  });
+});
 
 function error (ejecutar, err) 
 {
