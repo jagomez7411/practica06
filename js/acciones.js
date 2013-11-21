@@ -39,7 +39,7 @@ $("#Insertar").bind ("click", function (event)
   
   db.transaction (function (ejecutar) 
   {
-    var sql = "INSERT INTO clientes (nombre, apellido) VALUES (?, ?)";
+    var sql = "INSERT INTO Clientes (nombre, apellido) VALUES (?, ?)";
     ejecutar.executeSql (sql, [v_nombre, v_apellido], function ()
     { 
       alert ("Cliente Agregado");
@@ -51,7 +51,7 @@ $("#Listar").bind ("click", function (event)
 {
   db.transaction (function (ejecutar) 
   {
-    var sql = "SELECT * FROM clientes";
+    var sql = "SELECT * FROM Clientes";
 
     ejecutar.executeSql (sql, undefined,
 
