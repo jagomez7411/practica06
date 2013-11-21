@@ -47,6 +47,49 @@ $("#Insertar").bind ("click", function (event)
   });
 });
 
+$("#Listar").bind ("click", function (event)
+{
+  db.transaction (function (ejecutar) 
+  {
+    var sql = "SELECT * FROM clientes";
+
+    ejecutar.executeSql (sql, undefined,
+
+    function (ejecutar, resultado)
+    {
+      var a_html = "<ul>";
+      if (resultdado.rows.length)
+      {
+        for (var i = 0; i < resultado.rows.length; i++) 
+        {
+          var fila = resultado.rows.item (i);
+          var v_nombre = fila.nombre;
+          var v_apellido = fila.apellido;
+          a_html += "<li>" + v_nombre + "&nbsp;" + v_apellido + "</li>";
+        }
+      }
+      else
+      {
+        a_html += "<li> No hay clientes </li>";
+      }
+      
+      a_html += "</ul>";
+      
+      $("#listado").unbind ().bind ("pagebeforeshow", function ()
+      {
+        var $contentenido = $("#listado div:jqmData(role=content)");
+        $contentenido.html (a_html);
+        var $ul = $contentenido.find ("ul");
+        $ul.listview ();
+      });
+      
+      $.mobile.changePage ($("#listado"));
+      
+    }, error);
+  });
+  });
+  
+
 function error (ejecutar, err) 
 {
   alert ("Error de Base de Datos : " + err.message);
