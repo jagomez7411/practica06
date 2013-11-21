@@ -58,7 +58,7 @@ $("#Listar").bind ("click", function (event)
     function (ejecutar, resultado)
     {
       var a_html = "<ul>";
-      if (resultdado.rows.length)
+      if (resultado.rows.length)
       {
         for (var i = 0; i < resultado.rows.length; i++) 
         {
@@ -77,9 +77,9 @@ $("#Listar").bind ("click", function (event)
       
       $("#listado").unbind ().bind ("pagebeforeshow", function ()
       {
-        var $contentenido = $("#listado div:jqmData(role=content)");
-        $contentenido.html (a_html);
-        var $ul = $contentenido.find ("ul");
+        var $contenido = $("#listado div:jqmData(role=content)");
+        $contenido.html (a_html);
+        var $ul = $contenido.find ("ul");
         $ul.listview ();
       });
       
