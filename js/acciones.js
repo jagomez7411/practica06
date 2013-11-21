@@ -4,7 +4,7 @@
 $(document).ready(function(e){
 alert("Listo");
 	document.addEventListener("deviceready",function(){
-var db=OpenDataBase("Test","1.0","Test",65535);
+var db=openDatabase("Test","1.0","Test",65535);
 
 
 	
