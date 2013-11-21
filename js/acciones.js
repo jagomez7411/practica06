@@ -48,7 +48,7 @@ $("#Insertar").bind ("click", function (event)
 });
 
 $("#Listar").bind ("click", function (event)
-{alert("listar");
+{
   db.transaction (function (ejecutar) 
   {
     var sql = "SELECT * FROM Clientes";
@@ -56,12 +56,12 @@ $("#Listar").bind ("click", function (event)
     ejecutar.executeSql (sql, undefined,
 
     function (ejecutar, resultado)
-    {alert("funciona");
+    {
       var a_html = "<ul>";
       if (resultado.rows.length)
       {
         for (var i = 0; i < resultado.rows.length; i++) 
-        {alert("for");
+        {
           var fila = resultado.rows.item (i);
           var v_nombre = fila.nombre;
           var v_apellido = fila.apellido;
