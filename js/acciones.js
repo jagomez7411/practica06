@@ -65,8 +65,18 @@ $("#Listar").bind ("click", function (event)
           var fila = resultado.rows.item (i);
           var v_nombre = fila.nombre;
           var v_apellido = fila.apellido;
-          a_html += "<li>" + v_nombre + "&nbsp;" + v_apellido + "</li>";
-        }
+		  var v_id = fila.id;
+		  
+          a_html += "<li data-icon=false id= " + v_id + " >";
+		  
+		  a_html += "<a href=#>";
+		  
+		  a_html += v_nombre + "&nbsp;" + v_apellido;
+		  
+		  a_html += "<\a>";
+		  
+		  a_html += "<\li>";
+		}
       }
       else
       {
@@ -81,7 +91,25 @@ $("#Listar").bind ("click", function (event)
         $contenido.html (a_html);
         var $ul = $contenido.find ("ul");
         $ul.listview ();
+		$("li").bind ("swiperight", function (event)
+        {
+          var id_borrar = $(this).attr ("id");
+          if (!id_borrar) return;
+          
+          $(this).remove ();
+          
+          db.transaction (function (ejecutar) 
+          {
+            var SQL = "DELETE FROM Clientes WHERE id=?";
+            ejecutar.executeSql (SQL, [id_borrar], function ()
+            { 
+              alert ("Cliente Borrado");
+            }, error);//ejecutar
+          });// transaction
+        });// swipe right 
       });
+	  
+	  
       
       $.mobile.changePage ($("#listado"));
       
