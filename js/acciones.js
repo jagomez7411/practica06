@@ -103,7 +103,8 @@ $("#Listar").bind ("click", function (event)
             var SQL = "DELETE FROM Clientes WHERE id=?";
             ejecutar.executeSql (SQL, [id_borrar], function ()
             { 
-              alert ("Cliente Borrado");
+              navigator.notification.beep(3);
+			  alert ("Cliente Borrado");
             }, error);//ejecutar
           });// transaction
         });// swipe right 
